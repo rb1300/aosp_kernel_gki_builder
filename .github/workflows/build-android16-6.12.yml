@@ -1,4 +1,4 @@
-placeholdername: 🏗️ BUILD ANDROID16-6.12
+name: 🏗️ BUILD ANDROID16-6.12
 on:
   workflow_dispatch:
     inputs:

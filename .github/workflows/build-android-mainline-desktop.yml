@@ -1,4 +1,4 @@
-name: 🏗️ BUILD ANDROID15-6.6
+name: 🏗️ BUILD MAINLINE-KERNEL
 on:
   workflow_dispatch:
     inputs:
@@ -12,7 +12,7 @@ jobs:
   build:
     permissions:
       contents: write
-    name: BUILD ANDROID15-6.6
+    name: BUILD MAINLINE-KERNEL
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
@@ -25,7 +25,7 @@ jobs:
 
     - name: Read the configuration
       run: |
-        CONFIG_ENV=config.properties.gki_1566
+        CONFIG_ENV=config.properties.gki_mainline_desktop
         echo "KERNEL_SOURCE=$(cat $CONFIG_ENV | grep -w "KERNEL_SOURCE" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "KERNEL_SOURCE_BRANCH=$(cat $CONFIG_ENV | grep -w "KERNEL_SOURCE_BRANCH" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "KERNEL_CONFIG=$(cat $CONFIG_ENV | grep -w "KERNEL_CONFIG" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
@@ -354,7 +354,7 @@ jobs:
       if: env.CHECK_FILE_IS_OK == 'true' && env.AK3_IS_OK == 'true'
       uses: actions/upload-artifact@v4.3.1
       with:
-        name: AnyKernel3-A15-6.6${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
+        name: AnyKernel3-mainline${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/AnyKernel3/AnyKernel3.zip
         if-no-files-found: error
 

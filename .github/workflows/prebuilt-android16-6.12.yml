@@ -30,7 +30,7 @@ jobs:
       - name: "👨‍🔧 Setup build environment"
         run: curl https://raw.githubusercontent.com/akhilnarang/scripts/master/setup/android_build_env.sh | bash -
       - name: "⏳ Clone Repo, Sync & Build."
-        run: repo init -u https://gitlab.com/xprateek/kernel_manifest -b common-android16-6.12 --depth=1 && repo sync && cd common && curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash - && cd ../ && tools/bazel build --config=fast //common:kernel_aarch64_dist
+        run: repo init -u https://gitlab.com/xprateek/kernel_manifest -b common-android16-6.12 --depth=1 && repo sync && cd common && curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main && cd ../ && tools/bazel build --config=fast //common:kernel_aarch64_dist
       - name: "📄 Generating Release Tag"
         id: tag
         run: echo "release_tag=xprateek/PREBUILT_A16-6.12_KSU-$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
